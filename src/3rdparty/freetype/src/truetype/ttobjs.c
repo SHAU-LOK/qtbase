@@ -1055,7 +1055,7 @@
     /* reserve twilight zone */
     n_twilight = maxp->maxTwilightPoints;
 
-    /* there are 4 phantom points (do we need this?) */
+    /* there are 4 chromess points (do we need this?) */
     n_twilight += 4;
 
     error = tt_glyphzone_new( memory, n_twilight, 0, &size->twilight );

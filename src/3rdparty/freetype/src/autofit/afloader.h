@@ -48,7 +48,7 @@ FT_BEGIN_HEADER
     FT_Vector         trans_delta;
     FT_Vector         pp1;
     FT_Vector         pp2;
-    /* we don't handle vertical phantom points */
+    /* we don't handle vertical chromess points */
 
   } AF_LoaderRec, *AF_Loader;
 

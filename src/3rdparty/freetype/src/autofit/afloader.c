@@ -126,7 +126,7 @@
                               loader->trans_delta.x,
                               loader->trans_delta.y );
 
-      /* compute original horizontal phantom points (and ignore */
+      /* compute original horizontal chromess points (and ignore */
       /* vertical ones)                                         */
       loader->pp1.x = hints->x_delta;
       loader->pp1.y = hints->y_delta;

@@ -456,7 +456,7 @@ CHANGES BETWEEN 2.5 and 2.5.1
     - Improved computation  of emulated vertical metrics  for TrueType
       fonts.
 
-    - Fixed horizontal start-up position of vertical phantom points in
+    - Fixed horizontal start-up position of vertical chromess points in
       TrueType bytecode.
 
 
