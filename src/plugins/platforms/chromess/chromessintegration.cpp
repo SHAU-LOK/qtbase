@@ -39,8 +39,8 @@
 **
 ****************************************************************************/
 
-#include "phantomintegration.h"
-#include "phantombackingstore.h"
+#include "chromessintegration.h"
+#include "chromessbackingstore.h"
 
 #include <private/qpixmap_raster_p.h>
 
@@ -57,15 +57,15 @@
 
 QT_BEGIN_NAMESPACE
 
-class PhantomNativeInterface : public QPlatformNativeInterface
+class chromessNativeInterface : public QPlatformNativeInterface
 {
 public:
 };
 
-class PhantomScreen : public QPlatformScreen
+class chromessScreen : public QPlatformScreen
 {
 public:
-    PhantomScreen()
+    chromessScreen()
         : mDepth(32), mFormat(QImage::Format_ARGB32_Premultiplied) {}
 
     QRect geometry() const { return mGeometry; }
@@ -85,10 +85,10 @@ private:
     QSizeF mPhysicalSize;
 };
 
-PhantomIntegration::PhantomIntegration()
-  : m_nativeInterface(new PhantomNativeInterface)
+chromessIntegration::chromessIntegration()
+  : m_nativeInterface(new chromessNativeInterface)
 {
-    PhantomScreen *screen = new PhantomScreen();
+    chromessScreen *screen = new chromessScreen();
 
     // Simulate typical desktop screen
     int width = 1024;
@@ -105,11 +105,11 @@ PhantomIntegration::PhantomIntegration()
     screenAdded(screen);
 }
 
-PhantomIntegration::~PhantomIntegration()
+chromessIntegration::~chromessIntegration()
 {
 }
 
-bool PhantomIntegration::hasCapability(QPlatformIntegration::Capability cap) const
+bool chromessIntegration::hasCapability(QPlatformIntegration::Capability cap) const
 {
     switch (cap) {
     case ThreadedPixmaps: return true;
@@ -117,17 +117,17 @@ bool PhantomIntegration::hasCapability(QPlatformIntegration::Capability cap) con
     }
 }
 
-QPlatformWindow* PhantomIntegration::createPlatformWindow(QWindow* window) const
+QPlatformWindow* chromessIntegration::createPlatformWindow(QWindow* window) const
 {
     return new QPlatformWindow(window);
 }
 
-QPlatformBackingStore* PhantomIntegration::createPlatformBackingStore(QWindow* window) const
+QPlatformBackingStore* chromessIntegration::createPlatformBackingStore(QWindow* window) const
 {
-    return new PhantomBackingStore(window);
+    return new chromessBackingStore(window);
 }
 
-QPlatformFontDatabase *PhantomIntegration::fontDatabase() const
+QPlatformFontDatabase *chromessIntegration::fontDatabase() const
 {
     static QPlatformFontDatabase *db = 0;
     if (!db) {
@@ -140,12 +140,12 @@ QPlatformFontDatabase *PhantomIntegration::fontDatabase() const
     return db;
 }
 
-QAbstractEventDispatcher *PhantomIntegration::createEventDispatcher() const
+QAbstractEventDispatcher *chromessIntegration::createEventDispatcher() const
 {
     return createUnixEventDispatcher();
 }
 
-QPlatformNativeInterface *PhantomIntegration::nativeInterface() const
+QPlatformNativeInterface *chromessIntegration::nativeInterface() const
 {
     return m_nativeInterface.data();
 }

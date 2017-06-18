@@ -167,7 +167,7 @@
       gloader->current.outline.n_points   = slot->outline.n_points;
       gloader->current.outline.n_contours = slot->outline.n_contours;
 
-      /* compute original horizontal phantom points (and ignore */
+      /* compute original horizontal chromess points (and ignore */
       /* vertical ones)                                         */
       loader->pp1.x = hints->x_delta;
       loader->pp1.y = hints->y_delta;

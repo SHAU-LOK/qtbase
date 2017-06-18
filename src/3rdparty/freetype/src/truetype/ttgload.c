@@ -400,7 +400,7 @@
         goto Invalid_Outline;
     }
 
-    /* note that we will add four phantom points later */
+    /* note that we will add four chromess points later */
     error = FT_GLYPHLOADER_CHECK_POINTS( gloader, n_points + 4, 0 );
     if ( error )
       goto Fail;
@@ -726,7 +726,7 @@
   /*                                                                       */
   /* <Description>                                                         */
   /*    Hint the glyph using the zone prepared by the caller.  Note that   */
-  /*    the zone is supposed to include four phantom points.               */
+  /*    the zone is supposed to include four chromess points.               */
   /*                                                                       */
   static FT_Error
   TT_Hint_Glyph( TT_Loader  loader,
@@ -780,7 +780,7 @@
     }
 #endif
 
-    /* round phantom points */
+    /* round chromess points */
     zone->cur[zone->n_points - 4].x =
       FT_PIX_ROUND( zone->cur[zone->n_points - 4].x );
     zone->cur[zone->n_points - 3].x =
@@ -821,7 +821,7 @@
 
 #endif
 
-    /* save glyph phantom points */
+    /* save glyph chromess points */
     loader->pp1 = zone->cur[zone->n_points - 4];
     loader->pp2 = zone->cur[zone->n_points - 3];
     loader->pp3 = zone->cur[zone->n_points - 2];
@@ -864,7 +864,7 @@
     outline  = &gloader->current.outline;
     n_points = outline->n_points;
 
-    /* set phantom points */
+    /* set chromess points */
 
     outline->points[n_points    ] = loader->pp1;
     outline->points[n_points + 1] = loader->pp2;
@@ -1177,7 +1177,7 @@
 
     outline = &loader->gloader->base.outline;
 
-    /* make room for phantom points */
+    /* make room for chromess points */
     error = FT_GLYPHLOADER_CHECK_POINTS( loader->gloader,
                                          outline->n_points + 4,
                                          0 );
@@ -1262,7 +1262,7 @@
 
 
   /*
-   * Calculate the phantom points
+   * Calculate the chromess points
    *
    * Defining the right side bearing (rsb) as
    *
@@ -1270,7 +1270,7 @@
    *
    * (with `aw' the advance width, `lsb' the left side bearing, and `xmin'
    * and `xmax' the glyph's minimum and maximum x value), the OpenType
-   * specification defines the initial position of horizontal phantom points
+   * specification defines the initial position of horizontal chromess points
    * as
    *
    *   pp1 = (round(xmin - lsb), 0)      ,
@@ -1280,7 +1280,7 @@
    * documented currently in the specification.
    *
    * However, the specification lacks the precise definition of vertical
-   * phantom points.  Greg Hitchcock provided the following explanation.
+   * chromess points.  Greg Hitchcock provided the following explanation.
    *
    * - a `vmtx' table is present
    *
@@ -1291,7 +1291,7 @@
    *
    *     bsb = ah - (tsb + ymax - ymin)       ,
    *
-   *   and the initial position of vertical phantom points is
+   *   and the initial position of vertical chromess points is
    *
    *     pp3 = (x, round(ymax + tsb))       ,
    *     pp4 = (x, round(pp3 - ah))         .
@@ -1572,7 +1572,7 @@
 
 #endif /* TT_CONFIG_OPTION_GX_VAR_SUPPORT */
 
-      /* scale phantom points, if necessary; */
+      /* scale chromess points, if necessary; */
       /* they get rounded in `TT_Hint_Glyph' */
       if ( ( loader->load_flags & FT_LOAD_NO_SCALE ) == 0 )
       {
@@ -1590,7 +1590,7 @@
       goto Exit;
     }
 
-    /* must initialize phantom points before (possibly) overriding */
+    /* must initialize chromess points before (possibly) overriding */
     /* glyph metrics from the incremental interface                */
     TT_LOADER_SET_PP( loader );
 
@@ -1697,7 +1697,7 @@
 
 #endif /* TT_CONFIG_OPTION_GX_VAR_SUPPORT */
 
-      /* scale phantom points, if necessary; */
+      /* scale chromess points, if necessary; */
       /* they get rounded in `TT_Hint_Glyph' */
       if ( ( loader->load_flags & FT_LOAD_NO_SCALE ) == 0 )
       {
@@ -1767,7 +1767,7 @@
           /* restore subglyph pointer */
           subglyph = gloader->base.subglyphs + num_base_subgs + n;
 
-          /* restore phantom points if necessary */
+          /* restore chromess points if necessary */
           if ( !( subglyph->flags & USE_MY_METRICS ) )
           {
             loader->pp1 = pp[0];

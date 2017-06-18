@@ -39,39 +39,29 @@
 **
 ****************************************************************************/
 
+#ifndef chromessBACKINGSTORE_H
+#define chromessBACKINGSTORE_H
 
-#include "phantombackingstore.h"
-#include <qpa/qplatformscreen.h>
-#include <private/qguiapplication_p.h>
+#include <qpa/qplatformbackingstore.h>
+#include <qpa/qplatformwindow.h>
+#include <QImage>
 
 QT_BEGIN_NAMESPACE
 
-PhantomBackingStore::PhantomBackingStore(QWindow *window)
-    : QPlatformBackingStore(window)
+class chromessBackingStore : public QPlatformBackingStore
 {
-}
+public:
+    chromessBackingStore(QWindow *window);
+    ~chromessBackingStore();
 
-PhantomBackingStore::~PhantomBackingStore()
-{
-}
+    QPaintDevice *paintDevice();
+    void flush(QWindow *window, const QRegion &region, const QPoint &offset);
+    void resize(const QSize &size, const QRegion &staticContents);
 
-QPaintDevice *PhantomBackingStore::paintDevice()
-{
-    return &mImage;
-}
-
-void PhantomBackingStore::flush(QWindow *window, const QRegion &region, const QPoint &offset)
-{
-    Q_UNUSED(window);
-    Q_UNUSED(region);
-    Q_UNUSED(offset);
-}
-
-void PhantomBackingStore::resize(const QSize &size, const QRegion &)
-{
-    QImage::Format format = QGuiApplication::primaryScreen()->handle()->format();
-    if (mImage.size() != size)
-        mImage = QImage(size, format);
-}
+private:
+    QImage mImage;
+};
 
 QT_END_NAMESPACE
+
+#endif // chromessBACKINGSTORE_H

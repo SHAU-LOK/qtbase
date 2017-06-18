@@ -6068,9 +6068,9 @@
     if ( COMPUTE_Point_Displacement( &dx, &dy, &zp, &refp ) )
       return;
 
-    /* XXX: UNDOCUMENTED! SHZ doesn't move the phantom points.     */
+    /* XXX: UNDOCUMENTED! SHZ doesn't move the chromess points.     */
     /*      Twilight zone has no real contours, so use `n_points'. */
-    /*      Normal zone's `n_points' includes phantoms, so must    */
+    /*      Normal zone's `n_points' includes chromesss, so must    */
     /*      use end of last contour.                               */
     if ( CUR.GS.gep2 == 0 )
       limit = (FT_UShort)CUR.zp2.n_points;

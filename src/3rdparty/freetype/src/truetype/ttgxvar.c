@@ -1289,7 +1289,7 @@
   /*    glyph_index :: The index of the glyph being modified.              */
   /*                                                                       */
   /*    n_points    :: The number of the points in the glyph, including    */
-  /*                   phantom points.                                     */
+  /*                   chromess points.                                     */
   /*                                                                       */
   /* <Output>                                                              */
   /*    deltas      :: The array of points to change.                      */

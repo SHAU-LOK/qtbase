@@ -40,28 +40,38 @@
 ****************************************************************************/
 
 
-#include <qpa/qplatformintegrationplugin.h>
-#include "phantomintegration.h"
+#include "chromessbackingstore.h"
+#include <qpa/qplatformscreen.h>
+#include <private/qguiapplication_p.h>
 
 QT_BEGIN_NAMESPACE
 
-class PhantomIntegrationPlugin : public QPlatformIntegrationPlugin
+chromessBackingStore::chromessBackingStore(QWindow *window)
+    : QPlatformBackingStore(window)
 {
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID QPlatformIntegrationFactoryInterface_iid FILE "phantom.json")
-public:
-    PhantomIntegration *create(const QString&, const QStringList&);
-};
+}
 
-PhantomIntegration *PhantomIntegrationPlugin::create(const QString& system, const QStringList& paramList)
+chromessBackingStore::~chromessBackingStore()
 {
-    Q_UNUSED(paramList)
-    if (!system.compare(QLatin1String("phantom"), Qt::CaseInsensitive))
-        return new PhantomIntegration();
+}
 
-    return 0;
+QPaintDevice *chromessBackingStore::paintDevice()
+{
+    return &mImage;
+}
+
+void chromessBackingStore::flush(QWindow *window, const QRegion &region, const QPoint &offset)
+{
+    Q_UNUSED(window);
+    Q_UNUSED(region);
+    Q_UNUSED(offset);
+}
+
+void chromessBackingStore::resize(const QSize &size, const QRegion &)
+{
+    QImage::Format format = QGuiApplication::primaryScreen()->handle()->format();
+    if (mImage.size() != size)
+        mImage = QImage(size, format);
 }
 
 QT_END_NAMESPACE
-
-#include "main.moc"

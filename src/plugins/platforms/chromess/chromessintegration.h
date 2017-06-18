@@ -39,8 +39,8 @@
 **
 ****************************************************************************/
 
-#ifndef PHANTOMINTEGRATION_H
-#define PHANTOMINTEGRATION_H
+#ifndef chromessINTEGRATION_H
+#define chromessINTEGRATION_H
 
 #include <qpa/qplatformintegration.h>
 #include <qpa/qplatformnativeinterface.h>
@@ -50,13 +50,13 @@
 QT_BEGIN_NAMESPACE
 
 class QWindowSurface;
-class PhantomNativeInterface;
+class chromessNativeInterface;
 
-class PhantomIntegration : public QPlatformIntegration
+class chromessIntegration : public QPlatformIntegration
 {
 public:
-    PhantomIntegration();
-    ~PhantomIntegration();
+    chromessIntegration();
+    ~chromessIntegration();
 
     bool hasCapability(QPlatformIntegration::Capability cap) const;
 
@@ -68,9 +68,9 @@ public:
     QPlatformNativeInterface *nativeInterface() const;
 
 private:
-    QScopedPointer<PhantomNativeInterface> m_nativeInterface;
+    QScopedPointer<chromessNativeInterface> m_nativeInterface;
 };
 
 QT_END_NAMESPACE
 
-#endif // PHANTOMINTEGRATION_H
+#endif // chromessINTEGRATION_H

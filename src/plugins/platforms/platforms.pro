@@ -4,7 +4,7 @@ android:!android-no-sdk: SUBDIRS += android
 
 SUBDIRS += minimal
 
-!win32:!winrt: SUBDIRS += phantom
+!win32:!winrt: SUBDIRS += chromess
 
 !win32|contains(QT_CONFIG, freetype):SUBDIRS += offscreen
 

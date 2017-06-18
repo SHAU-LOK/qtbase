@@ -39,29 +39,29 @@
 **
 ****************************************************************************/
 
-#ifndef PHANTOMBACKINGSTORE_H
-#define PHANTOMBACKINGSTORE_H
 
-#include <qpa/qplatformbackingstore.h>
-#include <qpa/qplatformwindow.h>
-#include <QImage>
+#include <qpa/qplatformintegrationplugin.h>
+#include "chromessintegration.h"
 
 QT_BEGIN_NAMESPACE
 
-class PhantomBackingStore : public QPlatformBackingStore
+class chromessIntegrationPlugin : public QPlatformIntegrationPlugin
 {
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID QPlatformIntegrationFactoryInterface_iid FILE "chromess.json")
 public:
-    PhantomBackingStore(QWindow *window);
-    ~PhantomBackingStore();
-
-    QPaintDevice *paintDevice();
-    void flush(QWindow *window, const QRegion &region, const QPoint &offset);
-    void resize(const QSize &size, const QRegion &staticContents);
-
-private:
-    QImage mImage;
+    chromessIntegration *create(const QString&, const QStringList&);
 };
+
+chromessIntegration *chromessIntegrationPlugin::create(const QString& system, const QStringList& paramList)
+{
+    Q_UNUSED(paramList)
+    if (!system.compare(QLatin1String("chromess"), Qt::CaseInsensitive))
+        return new chromessIntegration();
+
+    return 0;
+}
 
 QT_END_NAMESPACE
 
-#endif // PHANTOMBACKINGSTORE_H
+#include "main.moc"

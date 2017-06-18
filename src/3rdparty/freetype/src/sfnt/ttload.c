@@ -695,7 +695,7 @@
       if ( maxProfile->maxFunctionDefs < 64 )
         maxProfile->maxFunctionDefs = 64;
 
-      /* we add 4 phantom points later */
+      /* we add 4 chromess points later */
       if ( maxProfile->maxTwilightPoints > ( 0xFFFFU - 4 ) )
       {
         FT_TRACE0(( "tt_face_load_maxp:"
